@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="case2" database="MySql" id="MySql-1efe" >
+	<schema name="case2" >
+		<table name="attempts" prior="123" >
+			<column name="id" type="INT" jt="4" mandatory="y" />
+			<column name="date_attempts" type="DATE" jt="91" mandatory="y" />
+			<column name="user_id" type="INT" jt="4" mandatory="y" />
+			<column name="task_id" type="INT" jt="4" mandatory="y" />
+			<column name="is_correct" type="BOOLEAN" jt="16" mandatory="y" />
+			<column name="flow_type" type="BOOLEAN" jt="16" mandatory="y" />
+			<index name="pk_case2" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="unq_case2_user_id" unique="UNIQUE_KEY" >
+				<column name="user_id" />
+			</index>
+			<index name="unq_case2_task_id" unique="UNIQUE_KEY" >
+				<column name="task_id" />
+			</index>
+			<options><![CDATA[engine=InnoDB]]></options>
+		</table>
+		<table name="tasks" prior="tbl" >
+			<column name="id" type="INT" jt="4" mandatory="y" />
+			<column name="number" type="INT" jt="4" mandatory="y" />
+			<column name="difficulty" type="INT" jt="4" mandatory="y" />
+			<column name="answer" type="VARCHAR" length="100" jt="12" mandatory="y" />
+			<index name="pk_tasks" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_tasks_case2" to_schema="case2" to_table="attempts" >
+				<fk_column name="id" pk="task_id" />
+			</fk>
+			<options><![CDATA[engine=InnoDB]]></options>
+		</table>
+		<table name="users" prior="студенты" generator_rows="225" >
+			<column name="id" type="INT" jt="4" mandatory="y" />
+			<column name="login" type="VARCHAR" length="100" jt="12" mandatory="y" />
+			<column name="fio" type="VARCHAR" length="100" jt="12" />
+			<index name="pk_студенты" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_users_case2" to_schema="case2" to_table="attempts" >
+				<fk_column name="id" pk="user_id" />
+			</fk>
+			<options><![CDATA[engine=InnoDB]]></options>
+		</table>
+	</schema>
+	<layout name="Default Layout" id="Layout-b90" show_relation="columns" >
+		<comment><![CDATA[Default Layout]]></comment>
+		<entity schema="case2" name="attempts" color="C1D8EE" x="704" y="320" />
+		<entity schema="case2" name="tasks" color="C1D8EE" x="896" y="400" />
+		<entity schema="case2" name="users" color="C1D8EE" x="480" y="368" />
+		<callout x="48" y="48" pointer="Round" >
+			<comment><![CDATA[This is a layout - a diagram with tools.
+- Right-click the layout to create new tables. 
+- Double-click table headers to edit. 
+- For a better understanding of the schema, create multiple layouts.
+- Save the design to the model file, and deploy from 'Schema / Create into the database'.]]></comment>
+		</callout>
+	</layout>
+</project>
