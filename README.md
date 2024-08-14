@@ -2,4 +2,4 @@
 
 Case2.pdf - ER-диаграмма базы данных.
 
-Case2.dbs, Case2.dbs.bak - файлы для DbSchema
+case2.dbs, case2.dbs.bak - файлы для DbSchema
